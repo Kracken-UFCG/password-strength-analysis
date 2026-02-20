@@ -5,10 +5,9 @@ export interface Rules {
     includeNumbers: boolean;
     includeSymbols: boolean;
     numberType: 'sequencial' | 'random' | 'none';
-
 }
 
-const RuleOne = () => {
+const FirstLevel = () => {
     const rules: Rules = {
         minSize: 8,
         includeLowerCase: true,
@@ -20,7 +19,7 @@ const RuleOne = () => {
     return rules;
 }
 
-const RuleTwo = () => {
+const SecondLevel = () => {
     const rules: Rules = {
         minSize: 8,
         includeLowerCase: true,
@@ -32,7 +31,7 @@ const RuleTwo = () => {
     return rules;
 }
 
-const RuleThree = () => {
+const ThirdLevel = () => {
     const rules: Rules = {
         minSize: 8,
         includeLowerCase: true,
@@ -44,7 +43,7 @@ const RuleThree = () => {
     return rules;
 }
 
-const RuleFour = () => {
+const FourthLevel = () => {
     const rules: Rules = {
         minSize: 10,
         includeLowerCase: true,
@@ -56,7 +55,7 @@ const RuleFour = () => {
     return rules;
 }
 
-const RuleFive = () => {
+const FifthLevel = () => {
     const rules: Rules = {
         minSize: 12,
         includeLowerCase: true,
@@ -69,9 +68,9 @@ const RuleFive = () => {
 }
 
 export const passwordRules = new Map<number, Rules>([
-    [1, RuleOne()],
-    [2, RuleTwo()],
-    [3, RuleThree()],
-    [4, RuleFour()],
-    [5, RuleFive()],
+    [1, FirstLevel()],
+    [2, SecondLevel()],
+    [3, ThirdLevel()],
+    [4, FourthLevel()],
+    [5, FifthLevel()],
 ]);
