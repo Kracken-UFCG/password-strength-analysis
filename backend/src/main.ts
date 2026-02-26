@@ -1,37 +1,32 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { runWorker } from './password_generator/passwordSeeder';
+import { writeFileSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
+generatePasswords();
 
 async function generatePasswords() {
 
-  const passwordsLevelOne = await runWorker(1, 100);
-  console.log(`Level 1`);
-  console.log(passwordsLevelOne);
+  const pwdOne = await runWorker(1, 100);
+  const pwdTwo = await runWorker(2, 100);
+  const pwdThree = await runWorker(3, 100);
+  const pwdFour = await runWorker(4, 10);
 
-  const passwordsLevelTwo = await runWorker(2, 100);
-  console.log(`Level 2`);
-  console.log(passwordsLevelTwo);
+  function saveCsv(level: number, passwords: string[]) {
+    const header = 'password\n';
+    const body = passwords.join('\n');
+    writeFileSync(`passwords_level_${level}.csv`, header + body);
+  }
 
-  const passwordsLevelThree = await runWorker(3, 100);
-  console.log(`Level 3`);
-  console.log(passwordsLevelThree);
-
-  const passwordsLevelFour = await runWorker(4, 100);
-  console.log(`Level 4`);
-  console.log(passwordsLevelFour);
-
-  const passwordsLevelFive = await runWorker(5, 100);
-  console.log(`Level 5`);
-  console.log(passwordsLevelFive);
-
-  const passwordsLevelSix = await runWorker(6, 100);
-  console.log(`Level 6`);
-  console.log(passwordsLevelSix);
-
+  saveCsv(1, pwdOne);
+  saveCsv(2, pwdTwo);
+  saveCsv(3, pwdThree);
+  saveCsv(4, pwdFour);
 }
+
+generatePasswords();

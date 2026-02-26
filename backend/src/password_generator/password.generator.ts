@@ -5,7 +5,7 @@ const CHARACTERS_DATA = {
     lowerCase: "abcdefghijklmnopqrstuvwxyz",
     upperCase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
     numbers: "0123456789",
-    symbols: "!@#$%&*()_+-=[]{}|;:,.<>?"
+    symbols: "!@#$%&*()_+-=[]{}|;:.<>?"
 };
 
 function generateWordPassword(): string {
@@ -25,7 +25,7 @@ function generateWordPassword(): string {
 export function generatePassword(
     passwordLevel: number,
 ): string {
-    if (passwordLevel == 6) {
+    if (passwordLevel == 4) {
         return generateWordPassword();
     }
     const rules = passwordRules.get(passwordLevel);

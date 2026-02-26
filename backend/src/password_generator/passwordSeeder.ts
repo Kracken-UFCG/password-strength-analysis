@@ -2,7 +2,7 @@ import { generatePassword } from "./password.generator";
 import path from "path";
 import { Worker } from "worker_threads";
 
-export function seedPasswordTask(passwordLevel, quantity: number): string[] {
+export function seedPasswordTask(passwordLevel: number, quantity: number): string[] {
     let passwords: string[] = []
 
     for (let i = 0; i < quantity; i++) {
@@ -12,7 +12,7 @@ export function seedPasswordTask(passwordLevel, quantity: number): string[] {
     return passwords;
 }
 
-export function runWorker(passwordLevel, quantity: number): Promise<string[]> {
+export function runWorker(passwordLevel: number, quantity: number): Promise<string[]> {
     return new Promise((resolve, reject) => {
 
         const worker = new Worker(
