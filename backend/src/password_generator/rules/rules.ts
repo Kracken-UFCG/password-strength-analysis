@@ -9,12 +9,12 @@ export interface Rules {
 
 const FirstLevel = () => {
     const rules: Rules = {
-        minSize: 6,
-        includeLowerCase: true,
+        minSize: 4,
+        includeLowerCase: false,
         includeUpperCase: false,
-        includeNumbers: false,
+        includeNumbers: true,
         includeSymbols: false,
-        numberType: 'none',
+        numberType: 'random',
     }
     return rules;
 }
@@ -24,8 +24,8 @@ const SecondLevel = () => {
         minSize: 6,
         includeLowerCase: true,
         includeUpperCase: true,
-        includeNumbers: true,
-        includeSymbols: true,
+        includeNumbers: false,
+        includeSymbols: false,
         numberType: 'none',
     }
     return rules;
