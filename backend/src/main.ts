@@ -1,12 +1,25 @@
 import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { runWorker } from './password_generator/passwordSeeder';
 import { writeFileSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,              
+      forbidNonWhitelisted: true,   
+      transform: true,             
+    }),
+  );
+
+  app.enableCors(); 
+
+  await app.listen(3000);
 }
+
 bootstrap();
 async function generatePasswords() {
 
